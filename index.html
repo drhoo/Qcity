@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Qcity — Simple technology for smoother cities</title>
+  <meta
+    name="description"
+    content="Qcity by Pebble explores simple, trusted QR-linked technology for smoother cities and everyday places."
+  >
+
+  <style>
+    :root {
+      --teal: #1fa6a0;
+      --teal-soft: #eaf7f6;
+      --ink: #1f2933;
+      --muted: #68737d;
+      --line: #e5e7eb;
+      --bg: #f7f9fa;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.96);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 21px;
+    }
+
+    .qmark {
+      width: 38px;
+      height: 38px;
+      border: 5px solid var(--teal);
+      border-radius: 11px;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .qmark::after {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 5px;
+      background: var(--teal);
+      right: -8px;
+      bottom: 1px;
+      transform: rotate(45deg);
+      border-radius: 3px;
+    }
+
+    .by-pebble {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 110px 0 100px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 auto;
+      max-width: 900px;
+      font-size: clamp(46px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-line {
+      margin: 30px auto 0;
+      max-width: 750px;
+      color: var(--muted);
+      font-size: clamp(20px, 3vw, 27px);
+      line-height: 1.45;
+    }
+
+    .hero strong {
+      color: var(--ink);
+    }
+
+    .intro {
+      background: var(--bg);
+      padding: 78px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    h2 {
+      margin: 0 0 20px;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -0.025em;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .principle {
+      font-size: 30px;
+      line-height: 1.35;
+      font-weight: 750;
+      margin: 0;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 48px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      min-height: 220px;
+      background: var(--white);
+    }
+
+    .number {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--teal-soft);
+      color: var(--teal);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 42px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .pilot {
+      background: var(--teal-soft);
+      padding: 90px 0;
+    }
+
+    .pilot-box {
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .pilot h2 {
+      font-size: clamp(38px, 5vw, 60px);
+      margin-bottom: 26px;
+    }
+
+    .pilot p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .pilot-words {
+      margin-top: 42px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pilot-words span {
+      background: var(--white);
+      border: 1px solid rgba(31,166,160,0.18);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+    }
+
+    .values {
+      padding: 90px 0;
+    }
+
+    .values-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .value {
+      padding: 34px 18px;
+      text-align: center;
+      font-weight: 800;
+      border-right: 1px solid var(--line);
+    }
+
+    .value:last-child {
+      border-right: 0;
+    }
+
+    footer {
+      padding: 48px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-row a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+      .intro-grid,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-grid {
+        gap: 30px;
+      }
+
+      .values-row {
+        grid-template-columns: 1fr;
+      }
+
+      .value {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .value:last-child {
+        border-bottom: 0;
+      }
+
+      .hero {
+        padding: 80px 0 75px;
+      }
+
+      .footer-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="/">
+        <span class="qmark" aria-hidden="true"></span>
+        <span>Qcity</span>
+      </a>
+
+      <div class="by-pebble">by Pebble</div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Qcity.one</div>
+
+        <h1>Simple technology for smoother cities.</h1>
+
+        <p class="hero-line">
+          Qcity is Pebble's exploration of how simple, trusted
+          QR-linked interactions can make everyday places
+          <strong>easier, safer and more useful.</strong>
+        </p>
+      </div>
+    </section>
+
+
+    <section class="intro">
+      <div class="wrap intro-grid">
+
+        <div>
+          <h2>Small interactions can make a big difference.</h2>
+        </div>
+
+        <div>
+          <p class="principle">
+            Scan something.<br>
+            Understand it.<br>
+            Do what needs to be done.
+          </p>
+
+          <p class="lead" style="margin-top:28px;">
+            The phone is already in our pocket. The QR code is already
+            understood. Qcity explores what becomes possible when the
+            interaction behind the scan is designed properly.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="wrap">
+
+        <div class="section-head">
+          <div class="eyebrow">What could Qcity do?</div>
+          <h2>Useful interactions for everyday places.</h2>
+          <p>
+            Not everything needs an app, an account or another complicated
+            system. Sometimes a simple scan and a clear next step is enough.
+          </p>
+        </div>
+
+        <div class="grid">
+
+          <article class="card">
+            <div class="number">01</div>
+            <h3>Help</h3>
+            <p>
+              Give people a simple way to help with a lost person,
+              object or situation without unnecessary data collection.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">02</div>
+            <h3>Contact</h3>
+            <p>
+              Allow people to make safe first contact without exposing
+              private phone numbers or personal details.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">03</div>
+            <h3>Check</h3>
+            <p>
+              Add an independent trust layer so people can check
+              destinations, services and QR-linked information.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">04</div>
+            <h3>Report</h3>
+            <p>
+              Let a resident report a damaged asset, overflowing bin
+              or local problem from the place where it happens.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">05</div>
+            <h3>Find</h3>
+            <p>
+              Help people, belongings and places reconnect through
+              simple, recognisable physical markers.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">06</div>
+            <h3>Play</h3>
+            <p>
+              Create trails, discovery games and public experiences
+              that connect physical places with simple digital interaction.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="pilot">
+      <div class="wrap pilot-box">
+
+        <div class="eyebrow">Start small</div>
+
+        <h2>One place. One problem. One simple pilot.</h2>
+
+        <p>
+          Qcity does not need a city-wide technology programme to begin.
+          A useful idea can be tested in one park, one beach, one street,
+          one event or one public facility — then measured in the real world.
+        </p>
+
+        <div class="pilot-words">
+          <span>One park</span>
+          <span>One beach</span>
+          <span>One car park</span>
+          <span>One event</span>
+          <span>One idea</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="values">
+      <div class="wrap">
+
+        <div class="section-head">
+          <div class="eyebrow">By design</div>
+          <h2>Keep the technology quiet.</h2>
+          <p>
+            The best interaction is often the one that does its job
+            without asking for more attention, information or complexity
+            than it needs.
+          </p>
+        </div>
+
+        <div class="values-row">
+          <div class="value">Helpful</div>
+          <div class="value">Simple</div>
+          <div class="value">Safe</div>
+          <div class="value">Trusted</div>
+          <div class="value">Minimum data</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>
+        Qcity.one — an exploration by Pebble
+      </div>
+
+      <div>
+        <a href="https://pebble.id">Pebble — Trust made simple.</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
